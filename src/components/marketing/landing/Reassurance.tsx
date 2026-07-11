@@ -1,4 +1,5 @@
 import { IconPhone } from "@/components/icons";
+import { asset } from "@/lib/asset";
 import { Reveal } from "./Reveal";
 
 const points = [
@@ -32,7 +33,7 @@ export function Reassurance() {
         className="mt-4 flex flex-col items-center gap-4 rounded-2xl border border-line bg-white p-5 text-center sm:flex-row sm:text-left"
       >
         <img
-          src="/enzo.png"
+          src={asset("/enzo.png")}
           alt="Enzo"
           className="size-16 shrink-0 rounded-full object-cover"
         />

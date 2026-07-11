@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { IconShield } from "@/components/icons";
+import { asset } from "@/lib/asset";
 
 export function SiteFooter() {
   return (
@@ -8,7 +9,7 @@ export function SiteFooter() {
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <Link href="/" className="flex items-center gap-2.5 text-stone">
-              <img src="/enzo.png" alt="Enzo" className="size-9 rounded-full object-cover" />
+              <img src={asset("/enzo.png")} alt="Enzo" className="size-9 rounded-full object-cover" />
               <span className="text-lg font-semibold tracking-tight">Enzo</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm text-stone-soft">
