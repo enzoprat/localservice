@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jacob — Visibilité en haut de Google pour artisans",
+  title: "Enzo — Visibilité en haut de Google pour artisans",
   description:
     "Vous ne payez pas un site internet, vous payez des appels. Local Services Ads « Garanti par Google » : votre entreprise en haut des recherches, facturée à l'appel.",
 };

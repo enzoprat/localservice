@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IconLogo, IconShield } from "@/components/icons";
+import { IconShield } from "@/components/icons";
 
 export function SiteFooter() {
   return (
@@ -8,8 +8,8 @@ export function SiteFooter() {
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <Link href="/" className="flex items-center gap-2.5 text-stone">
-              <IconLogo />
-              <span className="text-lg font-semibold tracking-tight">Jacob</span>
+              <img src="/enzo.png" alt="Enzo" className="size-9 rounded-full object-cover" />
+              <span className="text-lg font-semibold tracking-tight">Enzo</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm text-stone-soft">
               Je gère votre visibilité en haut de Google avec les Local Services Ads. Vous ne
@@ -49,7 +49,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-line pt-6 text-sm text-stone-dim sm:flex-row">
-          <p>© {new Date().getFullYear()} Jacob. Tous droits réservés.</p>
+          <p>© {new Date().getFullYear()} Enzo. Tous droits réservés.</p>
           <p>Une seule entreprise par métier et par zone.</p>
         </div>
       </div>

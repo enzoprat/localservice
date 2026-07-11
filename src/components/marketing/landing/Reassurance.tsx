@@ -31,11 +31,13 @@ export function Reassurance() {
         delay={200}
         className="mt-4 flex flex-col items-center gap-4 rounded-2xl border border-line bg-white p-5 text-center sm:flex-row sm:text-left"
       >
-        <span className="grid size-16 shrink-0 place-items-center rounded-full bg-navy text-xl font-semibold text-white">
-          J
-        </span>
+        <img
+          src="/enzo.png"
+          alt="Enzo"
+          className="size-16 shrink-0 rounded-full object-cover"
+        />
         <div className="flex-1">
-          <p className="font-semibold text-stone">Jacob — votre interlocuteur</p>
+          <p className="font-semibold text-stone">Enzo — votre interlocuteur</p>
           <p className="mt-1 text-sm text-stone-soft">
             C&apos;est moi qui monte votre dossier, règle vos campagnes et conteste les faux appels.
             Une seule personne, que vous pouvez appeler quand vous voulez.

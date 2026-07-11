@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { IconLogo, IconMenu, IconX, IconPhone } from "@/components/icons";
+import { IconMenu, IconX, IconPhone } from "@/components/icons";
 
 const links = [
   { href: "#fonctionnement", label: "Fonctionnement" },
@@ -31,8 +31,8 @@ export function SiteNav() {
         style={{ marginInline: "max(1rem, calc((100% - 72rem)/2))" }}
       >
         <Link href="/" className="flex items-center gap-2.5 text-stone">
-          <IconLogo />
-          <span className="text-lg font-semibold tracking-tight">Jacob</span>
+          <img src="/enzo.png" alt="Enzo" className="size-9 rounded-full object-cover" />
+          <span className="text-lg font-semibold tracking-tight">Enzo</span>
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex">
