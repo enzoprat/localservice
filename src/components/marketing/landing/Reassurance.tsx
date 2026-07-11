@@ -18,7 +18,7 @@ export function Reassurance() {
             key={p.title}
             y={20}
             delay={i * 90}
-            className="lift rounded-2xl border border-line bg-white p-5 shadow-sm"
+            className="lift rounded-2xl border border-line bg-white p-5 card-shadow"
           >
             <p className="font-semibold text-stone">{p.title}</p>
             <p className="mt-1 text-sm text-stone-soft">{p.desc}</p>
@@ -30,7 +30,7 @@ export function Reassurance() {
           TODO: remplacer l'avatar par la vraie photo et le vrai nom/numéro. */}
       <Reveal
         delay={200}
-        className="mt-4 flex flex-col items-center gap-4 rounded-2xl border border-line bg-white p-5 text-center sm:flex-row sm:text-left"
+        className="lift mt-4 flex flex-col items-center gap-4 rounded-2xl border border-line bg-white p-5 text-center card-shadow sm:flex-row sm:text-left"
       >
         <img
           src={asset("/enzo.png")}

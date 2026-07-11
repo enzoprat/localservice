@@ -4,6 +4,7 @@ import { useState } from "react";
 import { IconArrow } from "@/components/icons";
 import { euro, useLead } from "./LeadContext";
 import { Reveal } from "./Reveal";
+import { useCountUp } from "./useCountUp";
 
 const TRANSFO = 0.3; // constante interne, jamais exposée comme réglage
 const PRIX_APPEL = 40; // milieu de la fourchette 25–50 €
@@ -19,8 +20,13 @@ export function ProfitSimulator() {
   const ca = chantiers * valeur;
   const coutAppels = appels * PRIX_APPEL;
 
+  // La valeur pilotée par le curseur reste instantanée ; les résultats calculés
+  // (CA, coût des appels) comptent en douceur vers leur nouvelle cible.
+  const caAnim = useCountUp(ca);
+  const coutAppelsAnim = useCountUp(coutAppels);
+
   return (
-    <Reveal y={28} className="mx-auto max-w-2xl rounded-3xl border border-line bg-white p-6 shadow-sm sm:p-8">
+    <Reveal y={28} className="mx-auto max-w-2xl rounded-3xl border border-line bg-white p-6 card-shadow sm:p-8">
       {/* Curseur principal — une seule variable */}
       <label htmlFor="sim-valeur" className="block text-lg font-semibold text-stone">
         Combien vous rapporte un chantier, en moyenne ?
@@ -48,14 +54,14 @@ export function ProfitSimulator() {
         <p className="text-lg leading-relaxed text-stone sm:text-xl">
           Avec {appels} appels par mois, vous signez environ{" "}
           <strong className="text-navy">{chantiers} chantiers</strong>, soit{" "}
-          <strong className="text-navy">~{euro(ca)} de chiffre d&apos;affaires</strong>.
+          <strong className="text-navy">~{euro(caAnim)} de chiffre d&apos;affaires</strong>.
           <br />
           Vous aurez payé <strong className="text-stone">{euro(GESTION)} de gestion</strong> +{" "}
-          <strong className="text-stone">environ {euro(coutAppels)} d&apos;appels</strong>.
+          <strong className="text-stone">environ {euro(coutAppelsAnim)} d&apos;appels</strong>.
         </p>
         <p className="mt-4 border-t border-line pt-4 text-base text-stone-soft sm:text-lg">
           Chaque mois sans être en haut de Google, c&apos;est environ{" "}
-          <strong className="text-terre">{euro(ca)}</strong> que vous laissez à vos concurrents.
+          <strong className="text-terre">{euro(caAnim)}</strong> que vous laissez à vos concurrents.
         </p>
       </div>
 
@@ -82,7 +88,7 @@ export function ProfitSimulator() {
           <button
             type="button"
             onClick={() => setOpenAppels(true)}
-            className="text-sm text-stone-soft underline underline-offset-2 hover:text-navy"
+            className="-my-1 inline-block py-1 text-sm text-stone-soft underline underline-offset-2 hover:text-navy"
           >
             Ajuster le nombre d&apos;appels
           </button>

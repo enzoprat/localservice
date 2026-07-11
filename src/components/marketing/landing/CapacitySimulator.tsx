@@ -4,6 +4,7 @@ import { useState } from "react";
 import { IconArrow } from "@/components/icons";
 import { euro, useLead } from "./LeadContext";
 import { Reveal } from "./Reveal";
+import { useCountUp } from "./useCountUp";
 
 const TRANSFO = 0.3;
 const PRIX_APPEL = 40;
@@ -17,8 +18,12 @@ export function CapacitySimulator() {
   const budget = GESTION + appelsNecessaires * PRIX_APPEL;
   const none = chantiers === 0;
 
+  // Seul le budget conseillé compte en douceur ; le nombre de chantiers et
+  // d'appels (petits entiers pilotés) reste instantané pour un curseur réactif.
+  const budgetAnim = useCountUp(budget);
+
   return (
-    <Reveal y={28} className="mx-auto max-w-2xl rounded-3xl border border-line bg-white p-6 shadow-sm sm:p-8">
+    <Reveal y={28} className="mx-auto max-w-2xl rounded-3xl border border-line bg-white p-6 card-shadow sm:p-8">
       <label htmlFor="sim-capa" className="block text-lg font-semibold text-stone">
         Combien de chantiers supplémentaires pouvez-vous absorber par mois ?
       </label>
@@ -54,7 +59,7 @@ export function CapacitySimulator() {
               Pour <strong className="text-navy">{chantiers} chantiers de plus</strong> par mois,
               comptez environ <strong className="text-navy">{appelsNecessaires} appels</strong>.
               <br />
-              Budget conseillé : <strong className="text-navy">~{euro(budget)} / mois</strong>{" "}
+              Budget conseillé : <strong className="text-navy">~{euro(budgetAnim)} / mois</strong>{" "}
               (gestion + appels).
             </p>
           </div>

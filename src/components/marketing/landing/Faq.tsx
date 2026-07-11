@@ -46,7 +46,7 @@ function FaqItem({ q, a, delay }: { q: string; a: string; delay: number }) {
 
 export function Faq() {
   return (
-    <section id="faq" className="bg-white py-20">
+    <section id="faq" className="bg-white py-20 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-3xl px-5">
         <Reveal
           as="h2"

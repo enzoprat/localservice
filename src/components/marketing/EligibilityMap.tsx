@@ -55,7 +55,7 @@ export function EligibilityMap() {
               <button
                 key={t.id}
                 onClick={() => setTrade(t.id)}
-                className={`rounded-full border px-3.5 py-2 text-sm transition ${
+                className={`rounded-full border px-3.5 py-2.5 text-sm transition ${
                   trade === t.id
                     ? "border-navy bg-navy text-white"
                     : "border-line bg-white text-stone-soft hover:border-navy/40"

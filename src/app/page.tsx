@@ -36,7 +36,7 @@ export default function Home() {
         <Serp />
         <Comparator />
         <Profit />
-        <section id="eligibilite" className="scroll-mt-24 bg-white py-24">
+        <section id="eligibilite" className="scroll-mt-24 bg-white py-20 sm:py-24 lg:py-28">
           <div className="mx-auto max-w-6xl px-5">
             <EligibilityMap />
           </div>
@@ -79,7 +79,7 @@ function SectionHeading({
 }) {
   const centered = align === "center";
   return (
-    <div className={centered ? "mx-auto mb-10 max-w-2xl text-center" : ""}>
+    <div className={centered ? "mx-auto mb-10 max-w-2xl text-center sm:mb-12" : ""}>
       {eyebrow && (
         <Reveal as="div" y={14} className={centered ? "flex justify-center" : ""}>
           <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white/70 py-1 pl-1.5 pr-3.5 text-xs font-medium uppercase tracking-wide text-navy shadow-sm backdrop-blur">
@@ -115,7 +115,7 @@ function SectionHeading({
 function Serp() {
   return (
     <section
-      className="atmos overflow-hidden bg-sand py-24"
+      className="atmos overflow-hidden bg-sand py-20 sm:py-24 lg:py-28"
       style={{ "--glow-x": "18%", "--glow-y": "-10%", "--glow-color": "rgba(200,84,46,0.09)" } as React.CSSProperties}
     >
       <div className="mx-auto max-w-6xl px-5">
@@ -151,7 +151,7 @@ function Serp() {
 function Comparator() {
   return (
     <section
-      className="atmos overflow-hidden bg-white py-24"
+      className="atmos overflow-hidden bg-white py-20 sm:py-24 lg:py-28"
       style={{ "--glow-y": "30%", "--glow-size": "40rem", "--glow-color": "rgba(200,84,46,0.07)" } as React.CSSProperties}
     >
       <div className="mx-auto max-w-4xl px-5">
@@ -171,7 +171,7 @@ function Comparator() {
 function Profit() {
   return (
     <section
-      className="atmos overflow-hidden bg-sand-2 py-24"
+      className="atmos overflow-hidden bg-sand-2 py-20 sm:py-24 lg:py-28"
       style={{ "--glow-x": "80%", "--glow-y": "0%", "--glow-color": "rgba(183,136,46,0.08)" } as React.CSSProperties}
     >
       <div className="mx-auto max-w-6xl px-5">
@@ -189,7 +189,7 @@ function Profit() {
 
 function Capacity() {
   return (
-    <section className="bg-sand py-20">
+    <section className="bg-sand py-20 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
           eyebrow="Votre rythme"
@@ -207,7 +207,7 @@ function Journey() {
   return (
     <section
       id="fonctionnement"
-      className="atmos overflow-hidden scroll-mt-24 bg-white py-24 sm:py-28"
+      className="atmos overflow-hidden scroll-mt-24 bg-white py-20 sm:py-24 lg:py-28"
       style={{ "--glow-x": "50%", "--glow-y": "40%", "--glow-size": "56rem", "--glow-color": "rgba(20,40,63,0.05)" } as React.CSSProperties}
     >
       <div className="mx-auto max-w-6xl px-5">
@@ -228,7 +228,7 @@ function Pricing() {
   return (
     <section
       id="tarif"
-      className="atmos overflow-hidden scroll-mt-24 bg-sand py-24"
+      className="atmos overflow-hidden scroll-mt-24 bg-sand py-20 sm:py-24 lg:py-28"
       style={{ "--glow-x": "50%", "--glow-y": "-8%", "--glow-size": "44rem", "--glow-color": "rgba(200,84,46,0.1)" } as React.CSSProperties}
     >
       <div className="mx-auto max-w-6xl px-5">
@@ -248,7 +248,7 @@ function Pricing() {
 function ReassuranceSection() {
   return (
     <section
-      className="atmos overflow-hidden bg-sand-2 py-24"
+      className="atmos overflow-hidden bg-sand-2 py-20 sm:py-24 lg:py-28"
       style={{ "--glow-x": "50%", "--glow-y": "-10%", "--glow-size": "50rem", "--glow-color": "rgba(47,122,71,0.06)" } as React.CSSProperties}
     >
       <div className="mx-auto max-w-6xl px-5">

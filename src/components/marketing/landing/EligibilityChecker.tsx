@@ -17,7 +17,7 @@ export function EligibilityChecker() {
   const tradeLabel = eligibleTrades.find((t) => t.id === trade)?.label ?? "votre métier";
 
   return (
-    <div className="rounded-2xl border border-line bg-white p-5 shadow-sm sm:p-6">
+    <div className="rounded-2xl border border-line bg-white p-5 card-shadow sm:p-6">
       <p className="text-sm font-semibold text-stone">Vérifiez si votre zone est libre</p>
 
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
