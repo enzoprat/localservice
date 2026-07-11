@@ -1,26 +1,563 @@
 @import "tailwindcss";
 
+@theme {
+  --color-bg: #07070c;
+  --color-bg-soft: #0b0b14;
+  --color-surface: #101019;
+  --color-surface-2: #15151f;
+  --color-border: #23232f;
+  --color-border-soft: #1a1a24;
+
+  --color-ink: #f4f4f8;
+  --color-ink-soft: #b8b8c8;
+  --color-ink-dim: #7a7a8c;
+
+  --color-brand: #7c5cff;
+  --color-brand-2: #5b8cff;
+  --color-accent: #23e6a8;
+  --color-accent-2: #ffd166;
+  --color-danger: #ff5c72;
+  --color-warn: #ffb454;
+
+  /* Light theme (marketing / public funnel — couverturegironde DA:
+     ardoise + terre cuite + pierre/crème, or & vert garantie) */
+  --color-navy: #14283f;   /* ardoise — texte fort, nav, sections sombres */
+  --color-navy-2: #1e2d44; /* ardoise-700 */
+  --color-terre: #c8542e;  /* terre cuite — CTA / accent principal */
+  --color-terre-600: #a8421e;
+  --color-sand: #eef1f5;   /* porcelaine froide — sections tramées, net vs blanc */
+  --color-sand-2: #e4e9f0; /* pierre — deuxième palier, vrai contraste */
+  --color-gold: #b7882e;   /* or expertise */
+  --color-gg: #2f7a47;     /* vert garantie */
+  --color-stone: #0f1e33;
+  --color-stone-soft: #5c6675;
+  --color-stone-dim: #9ba4b0;
+  --color-line: #dbe1ea;   /* filet froid, net (fini beige) */
+
+  --font-sans: var(--font-jakarta), "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+
+  --radius-xl2: 1.25rem;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--color-border);
   }
 }
 
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.aurora::before,
+.aurora::after {
+  content: "";
+  position: absolute;
+  width: 45rem;
+  height: 45rem;
+  border-radius: 9999px;
+  filter: blur(120px);
+  opacity: 0.5;
+}
+.aurora::before {
+  top: -12rem;
+  left: -8rem;
+  background: radial-gradient(circle, rgba(124, 92, 255, 0.55), transparent 60%);
+}
+.aurora::after {
+  bottom: -14rem;
+  right: -10rem;
+  background: radial-gradient(circle, rgba(35, 230, 168, 0.35), transparent 60%);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+.glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+}
+
+.card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl2);
+}
+
+.gradient-text {
+  background: linear-gradient(100deg, #fff 10%, var(--color-brand-2) 55%, var(--color-brand) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-brand {
+  background: linear-gradient(120deg, var(--color-brand), var(--color-brand-2));
+  color: white;
+  box-shadow: 0 10px 30px -10px rgba(124, 92, 255, 0.6);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+.btn-brand:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+  box-shadow: 0 16px 40px -12px rgba(124, 92, 255, 0.75);
+}
+
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 0;
+  background: currentColor;
+  transition: width 0.2s ease;
+}
+.link-underline:hover::after {
+  width: 100%;
+}
+
+@keyframes fadeup {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fadeup {
+  animation: fadeup 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-floaty {
+  animation: floaty 6s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(20, 40, 63, 0.22);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(20, 40, 63, 0.4);
+  background-clip: padding-box;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------------- Light marketing theme ---------------- */
+
+.light {
+  background-color: #ffffff;
+  color: var(--color-stone);
+}
+
+.light-card {
+  background: #ffffff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-xl2);
+  box-shadow:
+    0 1px 2px rgba(20, 40, 63, 0.04),
+    0 8px 20px -12px rgba(20, 40, 63, 0.12),
+    0 24px 48px -28px rgba(20, 40, 63, 0.22);
+}
+
+.btn-navy {
+  position: relative;
+  background: linear-gradient(180deg, #1c3651 0%, var(--color-navy) 100%);
+  color: #fff;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, filter 0.2s ease;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 1px 2px rgba(22, 58, 95, 0.3),
+    0 12px 26px -12px rgba(22, 58, 95, 0.6);
+}
+.btn-navy:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 2px 4px rgba(22, 58, 95, 0.3),
+    0 18px 36px -14px rgba(22, 58, 95, 0.72);
+}
+.btn-navy:active {
+  transform: translateY(0);
+}
+
+.btn-gold {
+  background: var(--color-gold);
+  color: #fff;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.btn-gold:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.btn-terre {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #d75f38 0%, var(--color-terre) 55%, #bd4c28 100%);
+  color: #fff;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, filter 0.2s ease;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 1px 2px rgba(160, 60, 30, 0.35),
+    0 12px 26px -12px rgba(200, 84, 46, 0.65);
+}
+.btn-terre:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04) saturate(1.04);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 2px 4px rgba(160, 60, 30, 0.35),
+    0 20px 40px -14px rgba(200, 84, 46, 0.78);
+}
+.btn-terre:active {
+  transform: translateY(0);
+}
+/* Reflet qui balaie le bouton au survol. */
+.btn-terre::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.35) 50%, transparent 65%);
+  transform: translateX(-130%);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.btn-terre:hover::before {
+  transform: translateX(130%);
+}
+
+.dot-grid {
+  background-image: radial-gradient(rgba(22, 39, 51, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+@keyframes pulsering {
+  0% { transform: scale(0.6); opacity: 0.7; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+.pulse-ring {
+  animation: pulsering 2s ease-out infinite;
+}
+
+/* ==================== Motion system ==================== */
+
+/* Scroll-reveal : état par défaut = caché/décalé.
+   .is-in (posé par IntersectionObserver) = état final.
+   --rv-y / --rv-x / --rv-s / --d pilotent le mouvement et le délai. */
+.reveal {
+  opacity: 0;
+  transform: translate3d(var(--rv-x, 0), var(--rv-y, 24px), 0) scale(var(--rv-s, 1));
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--d, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Signature "téléphone qui sonne" : la cloche oscille, les ondes se propagent. */
+@keyframes ring-shake {
+  0%, 60%, 100% { transform: rotate(0); }
+  5%, 15%, 25% { transform: rotate(14deg); }
+  10%, 20%, 30% { transform: rotate(-14deg); }
+  35% { transform: rotate(0); }
+}
+.ring-shake {
+  transform-origin: 50% 15%;
+  animation: ring-shake 2.6s ease-in-out infinite;
+}
+
+@keyframes ring-wave {
+  0% { transform: scale(0.7); opacity: 0.55; }
+  70% { opacity: 0; }
+  100% { transform: scale(2.3); opacity: 0; }
+}
+.ring-wave {
+  transform-origin: center;
+  animation: ring-wave 2.6s ease-out infinite;
+}
+
+/* Dérive lente de lumière (fond hero) */
+@keyframes light-drift {
+  0%, 100% { transform: translate3d(-6%, -4%, 0) scale(1); opacity: 0.55; }
+  50% { transform: translate3d(6%, 4%, 0) scale(1.15); opacity: 0.8; }
+}
+.light-drift {
+  animation: light-drift 14s ease-in-out infinite;
+}
+
+/* Curseur clignotant pour le titre "tapé" */
+@keyframes caret-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.caret {
+  display: inline-block;
+  width: 0.06em;
+  height: 1em;
+  margin-left: 0.06em;
+  vertical-align: -0.12em;
+  background: currentColor;
+  animation: caret-blink 0.9s step-end infinite;
+}
+
+/* Tracé de trait (SVG) — piloté par --draw de 1 → 0 */
+.draw-line {
+  stroke-dasharray: var(--len, 1);
+  stroke-dashoffset: calc(var(--len, 1) * var(--draw, 1));
+  transition: stroke-dashoffset 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==================== Finition premium ==================== */
+
+/* Défilement fluide pour les ancres, coupé si l'utilisateur préfère. */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Sélection de texte aux couleurs de la marque. */
+::selection {
+  background: rgba(200, 84, 46, 0.16);
+  color: var(--color-navy);
+}
+
+/* États focus visibles et soignés (accessibilité + finition). */
+.light :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-terre);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Élévation premium au survol des cartes.
+   Courbe et durée alignées sur le reste du motion system. */
+.lift {
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease;
+  will-change: transform;
+}
+.lift:hover {
+  transform: translateY(-5px);
+  border-color: rgba(200, 84, 46, 0.28);
+  box-shadow:
+    0 2px 4px rgba(20, 40, 63, 0.05),
+    0 18px 32px -14px rgba(20, 40, 63, 0.16),
+    0 40px 64px -40px rgba(20, 40, 63, 0.3);
+}
+
+/* Atmosphère : halo lumineux radial derrière une section.
+   L'élément doit garder son contenu au-dessus (z-index géré ci-dessous).
+   Réglable via --glow-x / --glow-y / --glow-size / --glow-color. */
+.atmos {
+  position: relative;
+  isolation: isolate;
+}
+.atmos::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: var(--glow-y, -20%);
+  left: var(--glow-x, 50%);
+  width: var(--glow-size, 48rem);
+  height: var(--glow-size, 48rem);
+  transform: translateX(-50%);
+  border-radius: 9999px;
+  background: radial-gradient(circle, var(--glow-color, rgba(200, 84, 46, 0.1)), transparent 68%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+/* Filet dégradé : transition douce entre deux sections. */
+.hairline {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(20, 40, 63, 0.1) 20%,
+    rgba(20, 40, 63, 0.1) 80%,
+    transparent
+  );
+}
+
+/* Puce d'icône des eyebrows : anneau qui pulse + icône qui respire. */
+@keyframes chip-ring {
+  0% { transform: scale(1); opacity: 0.5; }
+  70% { opacity: 0; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+.chip-ring {
+  border: 1px solid currentColor;
+  animation: chip-ring 2.6s ease-out infinite;
+}
+
+@keyframes icon-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+.icon-breathe {
+  animation: icon-breathe 3s ease-in-out infinite;
+}
+
+/* Léger flottement vertical (icônes / éléments décoratifs). */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.float-y {
+  animation: float-y 3.4s ease-in-out infinite;
+}
+
+/* Badge "Garanti par Google" : reflet qui balaie régulièrement. */
+.gg-badge {
+  position: relative;
+  overflow: hidden;
+}
+.gg-badge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.65) 50%,
+    transparent 70%
+  );
+  transform: translateX(-130%);
+  animation: gg-shine 5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes gg-shine {
+  0%, 55% { transform: translateX(-130%); }
+  80%, 100% { transform: translateX(130%); }
+}
+
+/* Puces de confiance : léger relèvement au survol + halo vert qui pulse
+   doucement sur le badge « Garanti par Google » pour attirer l'œil. */
+.trust-chip {
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+.trust-chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px -8px rgba(20, 40, 63, 0.28);
+}
+@keyframes trust-pulse {
+  0%, 100% {
+    box-shadow:
+      0 1px 2px rgba(20, 40, 63, 0.06),
+      0 0 0 0 rgba(47, 122, 71, 0);
+  }
+  50% {
+    box-shadow:
+      0 1px 2px rgba(20, 40, 63, 0.06),
+      0 0 0 5px rgba(47, 122, 71, 0.1);
+  }
+}
+.trust-chip:first-child {
+  animation: trust-pulse 3.2s ease-in-out infinite;
+}
+
+/* Respect absolu de la préférence système : on coupe tout mouvement. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .ring-shake,
+  .ring-wave,
+  .light-drift,
+  .caret,
+  .draw-line,
+  .pulse-ring,
+  .animate-fadeup,
+  .animate-floaty,
+  .lift,
+  .chip-ring,
+  .icon-breathe,
+  .float-y,
+  .gg-badge::after,
+  .btn-terre::before,
+  .trust-chip,
+  .trust-chip:first-child {
+    animation: none !important;
+    transition: none !important;
+  }
+  .chip-ring {
+    opacity: 0 !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .lift:hover {
+    transform: none !important;
+  }
+  .draw-line {
+    stroke-dashoffset: 0 !important;
+  }
 }
