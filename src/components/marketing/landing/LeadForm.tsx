@@ -7,16 +7,61 @@ import { IconCheck, IconShield } from "@/components/icons";
 import { FORM_ID, useLead } from "./LeadContext";
 import { TrustBadges } from "./TrustBadges";
 
+const WEB3FORMS_KEY = "d7a14647-21ba-49f2-9ec9-28e95c68e492";
+
 export function LeadForm() {
   const router = useRouter();
   const { trade, zip, capacity, set } = useLead();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [showCapacity, setShowCapacity] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
 
   const zipValid = /^\d{5}$/.test(zip);
   const phoneValid = phone.replace(/\D/g, "").length >= 8;
   const valid = Boolean(trade) && zipValid && Boolean(name.trim()) && phoneValid;
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!valid || submitting) return;
+
+    // Honeypot anti-spam : rempli seulement par les bots.
+    const form = e.currentTarget;
+    if ((form.elements.namedItem("botcheck") as HTMLInputElement)?.checked) return;
+
+    setSubmitting(true);
+    setError(false);
+
+    const tradeLabel = eligibleTrades.find((t) => t.id === trade)?.label ?? trade;
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Nouveau prospect — ${tradeLabel} (${zip})`,
+          from_name: "artisanspro.enzoprat.fr",
+          Métier: tradeLabel,
+          "Code postal": zip,
+          Nom: name.trim(),
+          Téléphone: phone.trim(),
+          "Capacité (chantiers/mois)": capacity || "non précisé",
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        router.push("/confirmation");
+      } else {
+        setError(true);
+        setSubmitting(false);
+      }
+    } catch {
+      setError(true);
+      setSubmitting(false);
+    }
+  }
 
   return (
     <section id={FORM_ID} className="scroll-mt-24 bg-navy py-16 text-white sm:py-20">
@@ -33,12 +78,18 @@ export function LeadForm() {
         </div>
 
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            if (valid) router.push("/confirmation");
-          }}
+          onSubmit={handleSubmit}
           className="mt-8 rounded-3xl bg-white p-6 text-stone shadow-xl sm:p-8"
         >
+          {/* Honeypot anti-spam — masqué aux humains */}
+          <input
+            type="checkbox"
+            name="botcheck"
+            tabIndex={-1}
+            autoComplete="off"
+            className="hidden"
+            aria-hidden="true"
+          />
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="block">
               <span className="mb-2 block text-sm font-medium text-stone">Votre métier</span>
@@ -113,11 +164,17 @@ export function LeadForm() {
 
           <button
             type="submit"
-            disabled={!valid}
+            disabled={!valid || submitting}
             className="btn-terre mt-6 flex h-14 w-full items-center justify-center gap-2 rounded-xl text-base font-semibold transition-opacity disabled:cursor-not-allowed disabled:opacity-65"
           >
-            Vérifier mon éligibilité
+            {submitting ? "Envoi en cours…" : "Vérifier mon éligibilité"}
           </button>
+
+          {error && (
+            <p className="mt-3 text-center text-sm text-terre">
+              Une erreur est survenue. Réessayez ou appelez le 07 69 10 81 40.
+            </p>
+          )}
 
           <p className="mt-4 flex items-center justify-center gap-2 text-center text-xs text-stone-soft">
             <IconShield width={14} height={14} className="text-gg" />
