@@ -45,7 +45,7 @@ export function SiteNav() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <a href="tel:+33000000000" className="flex items-center gap-1.5 text-sm font-medium text-stone hover:text-navy">
+          <a href="tel:+33769108140" className="flex items-center gap-1.5 text-sm font-medium text-stone hover:text-navy">
             <IconPhone width={15} height={15} /> Être rappelé
           </a>
           <Link
@@ -79,7 +79,7 @@ export function SiteNav() {
               </a>
             ))}
             <div className="my-2 h-px bg-line" />
-            <a href="tel:+33000000000" className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-stone-soft hover:bg-sand">
+            <a href="tel:+33769108140" className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-stone-soft hover:bg-sand">
               <IconPhone width={15} height={15} /> Être rappelé sous 24 h
             </a>
             <Link href="#formulaire" onClick={() => setOpen(false)} className="btn-terre mt-1 rounded-xl px-4 py-2.5 text-center text-sm font-medium">

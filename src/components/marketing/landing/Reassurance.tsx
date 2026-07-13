@@ -45,10 +45,10 @@ export function Reassurance() {
           </p>
         </div>
         <a
-          href="tel:+33000000000"
+          href="tel:+33769108140"
           className="flex items-center gap-2 rounded-xl border border-line bg-sand px-5 py-3 text-sm font-medium text-stone hover:bg-sand-2"
         >
-          <IconPhone width={16} height={16} /> 00 00 00 00 00
+          <IconPhone width={16} height={16} /> 07 69 10 81 40
         </a>
       </Reveal>
     </div>

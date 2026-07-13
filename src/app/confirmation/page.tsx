@@ -45,7 +45,7 @@ export default function ConfirmationPage() {
         </p>
 
         <div className="mt-6">
-          <a href="tel:+33000000000" className="btn-terre flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-medium">
+          <a href="tel:+33769108140" className="btn-terre flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-medium">
             <IconPhone width={16} height={16} /> Être rappelé plus vite
           </a>
         </div>
