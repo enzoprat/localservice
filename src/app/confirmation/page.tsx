@@ -1,6 +1,5 @@
-import Link from "next/link";
 import { AuthShell } from "@/components/marketing/AuthShell";
-import { IconArrow, IconCheck, IconPhone } from "@/components/icons";
+import { IconCheck, IconPhone } from "@/components/icons";
 
 export default function ConfirmationPage() {
   const steps = [
@@ -45,13 +44,10 @@ export default function ConfirmationPage() {
           400 €/mois de gestion, plus les appels facturés en direct par Google.
         </p>
 
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <a href="tel:+33000000000" className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-line bg-white px-5 py-3 text-sm font-medium text-stone hover:bg-sand">
+        <div className="mt-6">
+          <a href="tel:+33000000000" className="btn-terre flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-medium">
             <IconPhone width={16} height={16} /> Être rappelé plus vite
           </a>
-          <Link href="/portal" className="btn-terre flex flex-1 items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-medium">
-            Découvrir le portail <IconArrow width={16} height={16} />
-          </Link>
         </div>
       </div>
     </AuthShell>
