@@ -9,7 +9,7 @@ const steps = [
   { icon: IconCalendar, title: "Rendez-vous de 15 min", desc: "On fait le point sur votre métier, votre zone et le budget que vous êtes prêt à mettre." },
   { icon: IconShield, title: "Vos documents", desc: "Kbis, assurance décennale, pièce d'identité. Je monte le dossier à votre place." },
   { icon: IconCheck, title: "Vérification par Google", desc: "Google contrôle tout et vous décerne son badge de confiance. Comptez quelques semaines." },
-  { icon: IconBolt, title: "Activation de votre zone", desc: "Votre annonce passe en ligne. C'est ici que démarrent les 30 jours de gestion offerte." },
+  { icon: IconBolt, title: "Activation de votre zone", desc: "Votre annonce passe en ligne et la gestion démarre : 400 €/mois, plus les appels facturés par Google." },
   { icon: IconPhone, title: "Les premiers appels", desc: "Les prospects vous appellent directement depuis Google, sans passer par un site." },
   { icon: IconInvoice, title: "Facturation", desc: "Vous ne payez que les appels reçus. Je conteste les faux appels chaque semaine." },
 ];

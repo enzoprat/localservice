@@ -120,7 +120,7 @@ export function AnimatedHero() {
           className="mt-5 text-sm text-stone-soft transition-opacity duration-700"
           style={{ opacity: done ? 1 : 0, transitionDelay: "240ms" }}
         >
-          <strong className="text-stone">400 €/mois</strong>, offerts le premier mois. Plus le coût
+          <strong className="text-stone">400 €/mois</strong> de gestion. Plus le coût
           des appels, facturé par Google. Sans engagement.
         </p>
 

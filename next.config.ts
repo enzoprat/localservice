@@ -1,8 +1,9 @@
 import type { NextConfig } from "next";
 import path from "node:path";
 
-const isGithubPages = process.env.GITHUB_PAGES === "true";
-const basePath = isGithubPages ? "/localservice" : "";
+// Domaine personnalisé (local.enzoprat.fr) → le site est servi à la racine,
+// donc plus de basePath même sur GitHub Pages.
+const basePath = "";
 
 const nextConfig: NextConfig = {
   output: "export",

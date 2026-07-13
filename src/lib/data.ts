@@ -282,7 +282,7 @@ export const marketingStats = [
   { value: "En haut", label: "au-dessus des Google Ads et des résultats naturels" },
   { value: "Garanti", label: "le badge de confiance vérifié par Google" },
   { value: "À l'appel", label: "vous êtes facturé quand le téléphone sonne" },
-  { value: "30 jours", label: "de gestion offerte, à partir de l'activation" },
+  { value: "400 €", label: "de gestion par mois, annoncé d'avance" },
 ];
 
 export const plans = [
@@ -314,8 +314,8 @@ export const faqs = [
   { q: "J'ai déjà un site, une agence ou du Google Ads.", a: "C'est complémentaire, pas concurrent. Les Local Services Ads s'affichent à un emplacement différent, au-dessus des publicités classiques et des résultats naturels." },
   { q: "On m'a déjà vendu un site et ça n'a rien donné.", a: "Ici vous ne payez pas un site. Vous payez des appels. Pas d'appel, pas de facture. C'est exactement l'inverse." },
   { q: "Pourquoi passer par vous, je peux le faire seul ?", a: "La validation Google est longue, les faux appels sont à contester chaque semaine sinon vous les payez, et la zone doit être réglée au cordeau. Vous êtes artisan, pas gestionnaire de campagne." },
-  { q: "Pourquoi la gestion est-elle offerte 30 jours ?", a: "Pour que vous me jugiez sur les résultats, pas sur ma parole. Vous ne payez que les appels réellement reçus pendant cette période." },
-  { q: "Ça prend combien de temps à démarrer ?", a: "Comptez quelques semaines de vérification Google, puis la diffusion démarre. Les 30 jours offerts commencent à l'activation, pas à la signature." },
+  { q: "Il n'y a pas d'engagement ?", a: "Non. Vous arrêtez quand vous voulez, sans justification et sans frais. Je préfère vous garder sur les résultats, pas sur un contrat." },
+  { q: "Ça prend combien de temps à démarrer ?", a: "Comptez quelques semaines de vérification Google, puis la diffusion démarre. La gestion est facturée à partir de l'activation, pas de la signature." },
 ];
 
 /* ------------------- Local Services Ads (LSA) ------------------- */
@@ -386,7 +386,7 @@ export const corsicaOutline = "M452 392 L466 400 L470 424 L462 448 L452 440 L450
 
 export const lsaSteps = [
   { n: "1", title: "Vérification par Google", desc: "Je monte votre dossier : Kbis, décennale, identité. Google vérifie tout et vous décerne son badge de confiance." },
-  { n: "2", title: "Activation de votre zone", desc: "Je règle vos métiers, votre secteur et votre budget plafond. C'est ici que démarrent les 30 jours de gestion offerte." },
+  { n: "2", title: "Activation de votre zone", desc: "Je règle vos métiers, votre secteur et votre budget plafond. La gestion démarre : 400 €/mois." },
   { n: "3", title: "Le téléphone sonne", desc: "Votre annonce s'affiche tout en haut de Google. Les prospects vous appellent directement, sans passer par un site." },
   { n: "4", title: "Vous décrochez", desc: "Les demandes arrivent sur votre application. Je conteste les faux appels chaque semaine pour que vous ne payiez que le vrai." },
 ];
@@ -402,9 +402,9 @@ export const whatIManage = [
 export const whatYouDo = ["Vous décrochez le téléphone."];
 
 export const pricingFacts = [
-  { label: "Gestion (mon forfait)", value: "400 € / mois", note: "Réglé après les 30 premiers jours." },
+  { label: "Gestion (mon forfait)", value: "400 € / mois", note: "Prix fixe, annoncé d'avance." },
   { label: "Coût des appels", value: "≈ 25 à 50 € / appel", note: "Facturé en direct par Google, selon le métier." },
-  { label: "Les 30 premiers jours", value: "Gestion offerte", note: "Vous ne payez que les appels reçus." },
+  { label: "Engagement", value: "Aucun", note: "Vous arrêtez quand vous voulez." },
 ];
 
 export function trendColor(trend: Trend) {

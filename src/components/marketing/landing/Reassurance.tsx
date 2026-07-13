@@ -4,7 +4,7 @@ import { Reveal } from "./Reveal";
 
 const points = [
   { title: "Sans engagement", desc: "Vous arrêtez quand vous voulez, sans justification." },
-  { title: "Prix fixe, annoncé", desc: "400 €/mois de gestion, offerts le premier mois." },
+  { title: "Prix fixe, annoncé", desc: "400 €/mois de gestion, annoncé d'avance." },
   { title: "Vérifié par Google", desc: "Ce n'est pas moi qui me certifie, c'est Google." },
   { title: "Une personne, pas une agence", desc: "Un seul interlocuteur, joignable directement." },
 ];

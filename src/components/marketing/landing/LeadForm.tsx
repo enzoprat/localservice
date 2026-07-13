@@ -125,7 +125,7 @@ export function LeadForm() {
           </p>
           <p className="mt-2 flex items-center justify-center gap-2 text-center text-xs text-stone-soft">
             <IconCheck width={14} height={14} className="text-gg" />
-            Ma prestation est offerte 30 jours — vous ne payez que les appels reçus.
+            400 €/mois de gestion, plus les appels facturés en direct par Google.
           </p>
         </form>
       </div>

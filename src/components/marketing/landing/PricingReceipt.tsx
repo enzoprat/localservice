@@ -96,42 +96,24 @@ export function PricingReceipt() {
               </span>
             </div>
           ))}
-
-          {/* Ligne "offert" — le prix barré tombe à 0 */}
-          <div
-            className="flex items-center justify-between py-4 transition-all duration-500"
-            style={{
-              opacity: run ? 1 : 0,
-              transform: run ? "translateX(0)" : "translateX(-10px)",
-              transitionDelay: "600ms",
-            }}
-          >
-            <div>
-              <p className="flex items-center gap-1.5 font-medium text-gg">
-                <IconCheck width={16} height={16} /> 30 premiers jours
-              </p>
-              <p className="mt-0.5 text-xs text-stone-soft">gestion offerte — vous ne payez que les appels</p>
-            </div>
-            <span className="font-mono text-xl font-bold tracking-tight text-gg tabular-nums">
-              <span className="mr-1.5 text-sm font-normal text-stone-dim line-through">400 €</span>0 €
-            </span>
-          </div>
         </div>
 
         {/* Total */}
         <div
-          className="mt-2 flex items-center justify-between rounded-2xl bg-navy px-5 py-4 text-white transition-all duration-500"
-          style={{ opacity: run ? 1 : 0, transform: run ? "scale(1)" : "scale(0.96)", transitionDelay: "800ms" }}
+          className="mt-2 flex items-center justify-between gap-4 rounded-2xl bg-navy px-5 py-4 text-white transition-all duration-500"
+          style={{ opacity: run ? 1 : 0, transform: run ? "scale(1)" : "scale(0.96)", transitionDelay: "600ms" }}
         >
-          <span className="text-sm font-medium">Vous ne réglez que…</span>
+          <span className="flex shrink-0 items-center gap-1.5 text-sm font-medium">
+            <IconCheck width={16} height={16} className="shrink-0" /> Sans engagement
+          </span>
           <span className="text-right text-sm font-semibold leading-tight">
-            les appels réellement reçus.<br />
-            <span className="text-white/70">Jamais un centime d&apos;avance.</span>
+            400 € de gestion + les appels.<br />
+            <span className="text-white/70">Vous arrêtez quand vous voulez.</span>
           </span>
         </div>
 
         <p className="mt-4 text-center text-xs text-stone-soft">
-          Vous fixez le budget maximum : il n&apos;est jamais dépassé. Sans engagement.
+          Vous fixez le budget maximum : il n&apos;est jamais dépassé.
         </p>
       </div>
 

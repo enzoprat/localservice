@@ -7,7 +7,7 @@ export default function ConfirmationPage() {
     { title: "Demande reçue", desc: "Votre zone est mise en attente pour votre métier. Je vous rappelle sous 24 h.", now: true },
     { title: "Montage du dossier (15 min)", desc: "On rassemble Kbis, assurance décennale et identité pour la vérification Google.", now: false },
     { title: "Vérification par Google", desc: "Google contrôle votre dossier et vous décerne son badge de confiance.", now: false },
-    { title: "Activation de votre zone", desc: "Votre annonce passe en ligne. C'est ici que démarrent les 30 jours de gestion offerte.", now: false },
+    { title: "Activation de votre zone", desc: "Votre annonce passe en ligne et la gestion démarre. Vous ne payez que les appels réellement reçus.", now: false },
   ];
   return (
     <AuthShell>
@@ -42,7 +42,7 @@ export default function ConfirmationPage() {
 
         <p className="mt-6 rounded-xl border border-line bg-sand px-4 py-3 text-sm text-stone-soft">
           <IconCheck width={15} height={15} className="mr-1 inline text-gg" />
-          Ma prestation est offerte 30 jours — vous ne payez que les appels reçus.
+          400 €/mois de gestion, plus les appels facturés en direct par Google.
         </p>
 
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
